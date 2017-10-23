@@ -31,7 +31,7 @@
 
         public T this[Point point]
         {
-            get { return this[point.X, point.Y] }
+            get { return this[point.X, point.Y]; }
             set { this[point.X, point.Y] = value; }
         }
 

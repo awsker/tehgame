@@ -16,12 +16,12 @@
 
         public Point NorthWall
         {
-            get { return new Point(_x / 2 + 1, y / 2); }
+            get { return new Point(_x / 2 + 1, _y / 2); }
         } 
 
         public Point WestWall
         {
-            get { return new Point(_x / 2, y / 2 + 1); }
+            get { return new Point(_x / 2, _y / 2 + 1); }
         }
         
         public Point EastWall
