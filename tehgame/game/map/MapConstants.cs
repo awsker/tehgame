@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace tehgame.game.map
+﻿namespace tehgame.game.map
 {
-    public class MapConstants
+    public enum Tile
     {
-        public enum Tile
-        {
+        Normal = 0
+    }
 
-        }
+    public enum Wall
+    {
+        Horizontal = 0,
+        Vertical = 1
     }
 }
