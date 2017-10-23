@@ -16,6 +16,8 @@ namespace tehgame
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            //test
         }
 
         /// <summary>
