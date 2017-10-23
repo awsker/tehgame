@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -6,11 +9,14 @@ namespace tehgame
 {
     public class Main : Game
     {
-        private GraphicsDeviceManager _graphics;
+        private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private Model _model;
-        
+        private readonly IList<Tuple<Model, Vector3>> _models = new List<Tuple<Model, Vector3>>();
+
+        private Vector3 _rotation;
+        private Vector3 _cameraPosition;
+
         public Main()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -20,7 +26,11 @@ namespace tehgame
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _model = Content.Load<Model>("trash/models/berra");
+
+            _models.Add(Tuple.Create(Content.Load<Model>("trash/models/berra"), new Vector3(0, 0, 0)));
+            //_models.Add(Tuple.Create(Content.Load<Model>("trash/models/berra"), new Vector3(10, 10, 10)));
+            //_models.Add(Tuple.Create(Content.Load<Model>("trash/models/berra"), new Vector3(-10, -10, -10)));
+            //_models.Add(Tuple.Create(Content.Load<Model>("trash/models/berra"), new Vector3(4, 2, 1)));
         }
 
         protected override void UnloadContent()
@@ -32,6 +42,19 @@ namespace tehgame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            var modelRotation = _rotation;
+            modelRotation.X += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .001f;
+            modelRotation.Y += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .001f;
+            modelRotation.Z += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .001f;
+            _rotation = modelRotation;
+
+            var cameraPosition = _cameraPosition;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                cameraPosition.X += (float)gameTime.ElapsedGameTime.TotalMilliseconds * .001f;
+            if (Keyboard.GetState().IsKeyDown(Keys.L))
+                cameraPosition.X -= (float)gameTime.ElapsedGameTime.TotalMilliseconds * .001f;
+            _cameraPosition = cameraPosition;
+
             base.Update(gameTime);
         }
 
@@ -39,62 +62,57 @@ namespace tehgame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // A model is composed of "Meshes" which are
-            // parts of the model which can be positioned
-            // independently, which can use different textures,
-            // and which can have different rendering states
-            // such as lighting applied.
-            foreach (var mesh in _model.Meshes)
+            foreach (var model in _models)
+                DrawModel(model.Item1, model.Item2);
+
+            base.Draw(gameTime);
+        }
+
+        private void DrawModel(Model model, Vector3 position)
+        {
+            foreach (var mesh in model.Meshes)
             {
-                // "Effect" refers to a shader. Each mesh may
-                // have multiple shaders applied to it for more
-                // advanced visuals. 
                 foreach (BasicEffect effect in mesh.Effects)
                 {
-                    // We could set up custom lights, but this
-                    // is the quickest way to get somethign on screen:
                     effect.EnableDefaultLighting();
-                    // This makes lighting look more realistic on
-                    // round surfaces, but at a slight performance cost:
                     effect.PreferPerPixelLighting = true;
+                    effect.World = GetWorldMatrix();
 
-                    // The world matrix can be used to position, rotate
-                    // or resize (scale) the model. Identity means that
-                    // the model is unrotated, drawn at the origin, and
-                    // its size is unchanged from the loaded content file.
-                    effect.World = Matrix.Identity;
-
-                    // Move the camera 8 units away from the origin:
-                    var cameraPosition = new Vector3(0, 10, 20);
-                    // Tell the camera to look at the origin:
+                    var cameraPosition = new Vector3(0, -30, 0);
                     var cameraLookAtVector = Vector3.Zero;
-                    // Tell the camera that positive Z is up
                     var cameraUpVector = Vector3.UnitZ;
 
                     effect.View = Matrix.CreateLookAt(cameraPosition, cameraLookAtVector, cameraUpVector);
 
-                    // We want the aspect ratio of our display to match
-                    // the entire screen's aspect ratio:
-                    float aspectRatio = _graphics.PreferredBackBufferWidth / (float)_graphics.PreferredBackBufferHeight;
-                    // Field of view measures how wide of a view our camera has.
-                    // Increasing this value means it has a wider view, making everything
-                    // on screen smaller. This is conceptually the same as "zooming out".
-                    // It also 
-                    float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
-                    // Anything closer than this will not be drawn (will be clipped)
-                    float nearClipPlane = 1;
-                    // Anything further than this will not be drawn (will be clipped)
-                    float farClipPlane = 200;
+                    var aspectRatio = _graphics.PreferredBackBufferWidth / (float)_graphics.PreferredBackBufferHeight;
+                    var fieldOfView = MathHelper.PiOver4;
+                    var nearClipPlane = 1;
+                    var farClipPlane = 200;
 
                     effect.Projection = Matrix.CreatePerspectiveFieldOfView(fieldOfView, aspectRatio, nearClipPlane, farClipPlane);
                 }
 
-                // Now that we've assigned our properties on the effects we can
-                // draw the entire mesh
                 mesh.Draw();
             }
+        }
 
-            base.Draw(gameTime);
+        private Matrix GetWorldMatrix()
+        {
+            const float circleRadius = 8;
+            const float heightOffGround = 3;
+
+            // this matrix moves the model "out" from the origin
+            var translationMatrix = Matrix.CreateTranslation(circleRadius, 0, heightOffGround);
+
+            // this matrix rotates everything around the origin
+            var rotationX = Matrix.CreateRotationX(_rotation.X);
+            var rotationY = Matrix.CreateRotationY(_rotation.Y);
+            var rotationZ = Matrix.CreateRotationZ(_rotation.Z);
+
+            // We combine the two to have the model move in a circle:
+            var combined = translationMatrix * rotationX * rotationY * rotationZ;
+
+            return combined;
         }
     }
 }
