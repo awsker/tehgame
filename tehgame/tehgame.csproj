@@ -43,8 +43,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
+    <Compile Include="game\map\MapGenerator.cs" />
     <Compile Include="game\map\Map.cs" />
     <Compile Include="game\map\MapConstants.cs" />
+    <Compile Include="game\map\DungeonGenerator.cs" />
+    <Compile Include="game\map\Point.cs" />
+    <Compile Include="game\map\ItemGrid.cs" />
+    <Compile Include="game\map\WallPositions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,7 +85,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="game\textures\placeholder.txt" />
     <Content Include="lib\MonoGame.Framework.dll" />
   </ItemGroup>
   <ItemGroup>
