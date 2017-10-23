@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tehgame", "tehgame\tehgame.csproj", "{2FC147A0-7C57-4EB4-842E-BCE41A66998B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tehgame", "tehgame\tehgame.csproj", "{7A692D1A-11E2-47BB-8AAD-0E06C608A997}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2FC147A0-7C57-4EB4-842E-BCE41A66998B}.Debug|x86.ActiveCfg = Debug|x86
-		{2FC147A0-7C57-4EB4-842E-BCE41A66998B}.Debug|x86.Build.0 = Debug|x86
-		{2FC147A0-7C57-4EB4-842E-BCE41A66998B}.Release|x86.ActiveCfg = Release|x86
-		{2FC147A0-7C57-4EB4-842E-BCE41A66998B}.Release|x86.Build.0 = Release|x86
+		{7A692D1A-11E2-47BB-8AAD-0E06C608A997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A692D1A-11E2-47BB-8AAD-0E06C608A997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A692D1A-11E2-47BB-8AAD-0E06C608A997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A692D1A-11E2-47BB-8AAD-0E06C608A997}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {DD8F69BA-F549-4450-8818-314E6191F2B2}
+		SolutionGuid = {551C83AE-5364-4D9B-AF8B-6E5CC9251299}
 	EndGlobalSection
 EndGlobal

@@ -2,7 +2,6 @@
 
 namespace tehgame
 {
-#if WINDOWS || LINUX
     /// <summary>
     /// The main class.
     /// </summary>
@@ -18,5 +17,4 @@ namespace tehgame
                 game.Run();
         }
     }
-#endif
 }
