@@ -1,23 +1,26 @@
-﻿namespace tehgame.game.map
+﻿using tehgame.game.map.pathfinding;
+using tehgame.game.util;
+
+namespace tehgame.game.map
 {
     public class Map
     {
-        private readonly ItemGrid<Tile> _tiles;
-        private readonly ItemGrid<Wall> _walls;
+        private PathGrid _grid;
+        private SparseGrid<IMapEntity> _mapEntities;
+        //private readonly IList<Entity> _static;
+        //private readonly IList<Entity> _active;
 
         public Map(int xSize, int ySize)
         {
-            _tiles = new ItemGrid<Tile>(xSize, ySize);
-            _walls = new ItemGrid<Wall>(xSize*2 + 1, ySize*2 + 1);
+            _grid = new PathGrid(xSize * 2 + 1, ySize * 2 + 1);
+            _mapEntities = new SparseGrid<IMapEntity>();
+            //_static = new List<Entity>();
+            //_active = new List<Entity>();
         }
 
-        public void PasteInto(Map target, int xOffset, int yOffset)
+        public void AddMapEntity(IMapEntity entity)
         {
-            _tiles.PasteInto(target._tiles, xOffset, yOffset);
-            _walls.PasteInto(target._walls, xOffset, yOffset);
+            _mapEntities.AddValue(entity, entity.Position);
         }
-        
-        public ItemGrid<Tile> Tiles => _tiles;
-        public ItemGrid<Wall> Walls => _walls;
     }
 }

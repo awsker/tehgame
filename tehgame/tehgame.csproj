@@ -43,13 +43,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
-    <Compile Include="game\map\MapGenerator.cs" />
+    <Compile Include="game\map\MapTile.cs" />
+    <Compile Include="game\util\SparseGrid.cs" />
+    <Compile Include="game\map\generator\IRoom.cs" />
+    <Compile Include="game\map\generator\MapBlueprint.cs" />
+    <Compile Include="game\map\generator\MapGenerator.cs" />
+    <Compile Include="game\map\generator\Room.cs" />
+    <Compile Include="game\map\MapWall.cs" />
+    <Compile Include="game\map\IMapEntity.cs" />
     <Compile Include="game\map\Map.cs" />
-    <Compile Include="game\map\MapConstants.cs" />
-    <Compile Include="game\map\DungeonGenerator.cs" />
-    <Compile Include="game\map\Point.cs" />
-    <Compile Include="game\map\ItemGrid.cs" />
-    <Compile Include="game\map\WallPositions.cs" />
+    <Compile Include="game\map\generator\MapConstants.cs" />
+    <Compile Include="game\map\generator\DungeonGenerator.cs" />
+    <Compile Include="game\util\Point.cs" />
+    <Compile Include="game\map\pathfinding\Path.cs" />
+    <Compile Include="game\map\pathfinding\PathGrid.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
