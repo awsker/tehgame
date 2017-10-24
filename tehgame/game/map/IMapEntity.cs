@@ -6,6 +6,6 @@ namespace tehgame.game.map
     public interface IMapEntity
     {
         Point Position { get; }
-        IEnumerable<Point> BlockedSquares();
+        IEnumerable<Point> GetBlockedSquares();
     }
 }

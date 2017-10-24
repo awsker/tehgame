@@ -15,7 +15,7 @@ namespace tehgame.game.map
             Type = type;
         }
 
-        public IEnumerable<Point> BlockedSquares()
+        public IEnumerable<Point> GetBlockedSquares()
         {    
             if(Type == WallType.Horizontal)
             {

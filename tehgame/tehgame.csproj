@@ -42,7 +42,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Game1.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="game\map\MapTile.cs" />
     <Compile Include="game\util\SparseGrid.cs" />
     <Compile Include="game\map\generator\IRoom.cs" />

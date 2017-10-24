@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace tehgame.game.util
 {
-    public class SparseGrid<T>
+    public class SparseGrid<T> : IEnumerable<T>
     {
         private int _minX, _maxX, _minY, _maxY;
         private IDictionary<Point, List<T>> _values;
@@ -71,6 +73,16 @@ namespace tehgame.game.util
                 _minY = Math.Min(_minY, p.Y);
                 _maxY = Math.Max(_maxY, p.Y);
             }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return _values.Values.SelectMany(list => list).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return _values.Values.SelectMany(list => list).GetEnumerator();
         }
 
         public int Width => _values.Count == 0 ? 0 : _maxX - _minX + 1;

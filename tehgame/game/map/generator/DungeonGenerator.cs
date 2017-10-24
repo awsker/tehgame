@@ -6,8 +6,7 @@ namespace tehgame.game.map.generator
     {
         Random _random;
         public DungeonGenerator() : this(new Random().Next()) { }
-
-
+        
         public DungeonGenerator(int seed) {
             _random = new Random(seed);
         }
