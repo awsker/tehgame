@@ -42,6 +42,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="game\map\Map.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="game\map\MapTile.cs" />
     <Compile Include="game\util\SparseGrid.cs" />
@@ -51,7 +52,6 @@
     <Compile Include="game\map\generator\Room.cs" />
     <Compile Include="game\map\MapWall.cs" />
     <Compile Include="game\map\IMapEntity.cs" />
-    <Compile Include="game\map\Map.cs" />
     <Compile Include="game\map\generator\MapConstants.cs" />
     <Compile Include="game\map\generator\DungeonGenerator.cs" />
     <Compile Include="game\util\Point.cs" />

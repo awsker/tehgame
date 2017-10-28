@@ -25,17 +25,17 @@ namespace tehgame.game.map
 
         public void AddMapEntity(IMapEntity entity)
         {
-            if(entity.Position.X >= 0 && entity.Position.X < _actualWidth &&
-               entity.Position.Y >= 0 && entity.Position.Y < _actualHeight)
+            if (entity.Position.X >= 0 && entity.Position.X < _actualWidth &&
+                entity.Position.Y >= 0 && entity.Position.Y < _actualHeight)
                 _mapEntities.AddValue(entity, entity.Position);
         }
 
         public void UpdatePathGrid()
         {
             _grid = new PathGrid(_actualWidth, _actualHeight);
-            foreach(var entity in _mapEntities)
+            foreach (var entity in _mapEntities)
             {
-                foreach(var pos in entity.GetBlockedSquares())
+                foreach (var pos in entity.GetBlockedSquares())
                 {
                     _grid.SetValue(PathGrid.Blocked, pos.X, pos.Y);
                 }
