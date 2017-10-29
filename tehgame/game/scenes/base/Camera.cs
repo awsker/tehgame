@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using tehgame.game.debug;
+using tehgame.game.debugging;
 
 namespace tehgame.game.scenes.@base
 {
