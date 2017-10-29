@@ -42,7 +42,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="game\debugging\GameDebug.cs" />
+    <Compile Include="game\util\GameDebug.cs" />
     <Compile Include="game\entity\base\Entity3D.cs" />
     <Compile Include="game\entity\base\Entity.cs" />
     <Compile Include="game\GameManager.cs" />

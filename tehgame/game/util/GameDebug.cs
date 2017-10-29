@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace tehgame.game.debugging
+namespace tehgame.game.util
 {
     public static class GameDebug
     {
