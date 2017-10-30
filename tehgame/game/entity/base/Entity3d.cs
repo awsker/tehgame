@@ -14,6 +14,8 @@ namespace tehgame.game.entity.@base
         public Entity3D(Model model)
         {
             Model = model;
+
+            Transform = new Transform(Vector3.Zero, new Vector3(0f, 0f, 0f), new Vector3(1f, 1f, 1f));
         }
 
         public Model Model { get; }
@@ -42,7 +44,13 @@ namespace tehgame.game.entity.@base
 
         private Matrix GetWorldMatrix()
         {
-            return Matrix.CreateTranslation(new Vector3());
+            var translation = Matrix.CreateTranslation(Transform.Position);
+            var rotationX = Matrix.CreateRotationX(Transform.Rotation.X);
+            var rotationY = Matrix.CreateRotationY(Transform.Rotation.Y);
+            var rotationZ = Matrix.CreateRotationZ(Transform.Rotation.Z);
+            var scale = Matrix.CreateScale(Transform.Scale);
+
+            return translation * rotationX * rotationY * rotationZ * scale;
         }
     }
 }

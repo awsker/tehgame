@@ -7,7 +7,7 @@ namespace tehgame.game.entity.@base
 {
     public interface IEntity
     {
-        Vector3 Position { get; set; }
+        Transform Transform { get; set; }
 
         void LoadContent(ContentManager contentManager);
         void Update(GameTime gameTime);
@@ -17,7 +17,7 @@ namespace tehgame.game.entity.@base
 
     public abstract class Entity : IEntity
     {
-        public Vector3 Position { get; set; }
+        public Transform Transform { get; set; }
 
         public virtual void LoadContent(ContentManager contentManager) { }
         public virtual void Update(GameTime gameTime) { }
