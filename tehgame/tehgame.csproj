@@ -84,6 +84,8 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="game\ui\fonts\GermaniaOne-Regular.ttf" />
+    <None Include="game\ui\fonts\OverlockSC-Regular.ttf" />
     <None Include="libopenal.1.dylib" />
     <None Include="libSDL2-2.0.0.dylib" />
     <None Include="MonoGame.Framework.dll.config" />
@@ -101,6 +103,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="game\ui\dumpar\ui-concept-03.png" />
+    <Content Include="game\ui\item-active.png" />
+    <Content Include="game\ui\item-default.png" />
     <Content Include="lib\MonoGame.Framework.dll" />
   </ItemGroup>
   <ItemGroup>
